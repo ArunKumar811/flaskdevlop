@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - Job Recommendation System{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">AI-powered Job Recommendation System</h1>
+    <p class="lead">Find the perfect job match for your skills and preferences</p>
+    {% if current_user.is_authenticated %}
+    <a href="{{ url_for('recommendations') }}" class="btn btn-primary btn-lg">Get Recommendations</a>
+    {% else %}
+    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Get Started</a>
+    <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg ml-2">Login</a>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Personalized Matches</h5>
+                <p class="card-text">Our AI algorithm analyzes your skills and preferences to find the best job matches.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Skill-Based Filtering</h5>
+                <p class="card-text">Focus on jobs that value your specific skills and experience level.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Easy to Use</h5>
+                <p class="card-text">Just create an account, fill in your skills, and get instant recommendations.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

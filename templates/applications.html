@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}My Applications{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">My Job Applications</h2>
+
+{% if applications %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.job_title }}</td>
+            <td>{{ app.company }}</td>
+            <td>{{ app.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-info">You haven’t applied for any jobs yet.</div>
+{% endif %}
+{% endblock %}

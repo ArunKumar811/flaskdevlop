@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}Job Recommendations{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Your Personalized Job Recommendations</h2>
+
+{% if jobs %}
+<div class="row">
+    {% for job in jobs %}
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">{{ job.title }}</h5>
+            </div>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">{{ job.company }}</h6>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <p><strong>Experience Required:</strong> {{ job.min_experience }} years</p>
+                <p>{{ job.description[:150] }}...</p>
+            </div>
+            <div class="card-footer">
+                <form action="{{ url_for('apply_job') }}" method="POST" onsubmit="return confirmApply('{{ job.title }}')">
+                    <input type="hidden" name="job_title" value="{{ job.title }}">
+                    <input type="hidden" name="company" value="{{ job.company }}">
+                    <button type="submit" class="btn btn-primary">Apply Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+    <p>No recommendations found. Please update your profile.</p>
+</div>
+{% endif %}
+
+<script>
+function confirmApply(jobTitle) {
+    const confirmed = confirm(`Are you sure you want to apply for "${jobTitle}"?`);
+    if (confirmed) {
+        alert("✅ Application submitted successfully!");
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
+{% endblock %}
