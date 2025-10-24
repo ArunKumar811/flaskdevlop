@@ -3,12 +3,13 @@ setuptools>=80.0
 wheel>=0.45.0
 
 flask==3.0.3
-scikit-learn==1.5.2
-pandas==2.2.2
-numpy==1.26.4
-nltk==3.9.1
 flask-wtf==1.2.1
 flask-sqlalchemy==3.1.1
 flask-login==0.6.3
 gunicorn==23.0.0
 python-dotenv==1.0.1
+
+scikit-learn==1.5.2
+pandas==2.2.2
+numpy==1.26.4
+nltk==3.9.1
